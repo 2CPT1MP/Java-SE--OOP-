@@ -43,11 +43,13 @@ public class Event {
         this (name, date, 0);
     }
 
+    protected Event() {this ("N/A");}
+
 
     //BEHAVIOR
     public String toString() {
-        return "=====================\nID: " +id + "\n=====================\nName: " + name + "\nDate: " + date + "\nPrice Per Guest: "
-                + costPerGuest + "\nNumber of Guests: " + numOfGuests + "\n=====================\n        TOTAL: " +getFormattedTotal() + "\n\n\n";
+        return "\n\n==========================\nID: " +id + "\n==========================\nTitle: " + name + "\nDate: " + date + "\nPrice Per Guest: "
+                + costPerGuest + "\nNumber of Guests: " + numOfGuests + "\n==========================\n        TOTAL: " +getFormattedTotal() + "\n\n\n";
     }
 
     private double getTotal() {return numOfGuests * costPerGuest;}
