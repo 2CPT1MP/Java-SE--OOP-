@@ -18,7 +18,10 @@ public class Event {
     protected int getIdSeed() {return ID_SEED;}
 
     //MODIFIER METHODS
-    protected void setName(String n) {name = n;}
+    protected void setName(String n) {
+        name = n;
+        setId(String.format("%c%04d", name.charAt(0), ID_SEED++).toUpperCase());
+    }
     protected void setDate(String d) {date = d;}
     protected void setId(String i) {id = i;}
     protected void setCostPerGuest(double c) {costPerGuest = c;}
@@ -28,7 +31,7 @@ public class Event {
 
     //CONSTRUCTORS
     protected Event(String name, String date, int numOfGuests) {
-        id = String.format("%c%04d", name.charAt(0), ID_SEED++).toUpperCase();
+
         costPerGuest = 40.00d;
         this.name = name;
         this.date = date;
