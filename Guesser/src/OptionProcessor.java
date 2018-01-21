@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 
 public class OptionProcessor {
 
-
     private static OptionProcessor processor;
     public static OptionProcessor getInstance() {
         if (processor == null)
@@ -19,62 +19,27 @@ public class OptionProcessor {
     }
 
 
-
     private ArrayList<String> options = new ArrayList<>();
+
+
 
 
     public void addOption(String option) {
         options.add(option);
-        commitToSrc();
+        Source.addRecord(option);
     }
+
+
     public String getOption() {
-        readOptionsFromSrc();
+        options = Source.download();
         if (options.size() != 0)
             return options.get(randomizeOption());
         return "No options are available";
     }
 
-
-
-
-    private void readOptionsFromSrc() {
-
-       try (FileReader fileReader = new FileReader("options.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader)){
-
-           while (true) {
-               String line = bufferedReader.readLine();
-               if (line == null)
-                   return;
-               options.add(line);
-           }
-
-       } catch (IOException e) {
-           e.printStackTrace();
-       }
-         catch (Exception e) {
-           e.printStackTrace();
-         }
-    }
-
-    private void commitToSrc() {
-
-        try (FileWriter fileWriter = new FileWriter("options.txt")) {
-
-            Iterator<String> iterator = options.iterator();
-
-            while (iterator.hasNext())
-                fileWriter.write(iterator.next() + "\n");
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
      private int randomizeOption() {
         Random randomizer = new Random();
-        int randIndex = randomizer.nextInt(options.size());
-        return randIndex;
+        return randomizer.nextInt(options.size());
     }
+
 }
