@@ -1,24 +1,16 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
 
 public abstract class Source {
 
-
-
-
     public static void addRecord(String record) {
-
         try (FileWriter fileWriter = new FileWriter("src.info", true))
          {
-
              BufferedWriter bf = new BufferedWriter(fileWriter);
 
              bf.write(record);
              bf.newLine();
              bf.flush();
-
         } catch (FileNotFoundException e) {
             Errors.showFileNotFoundError();
         } catch (IOException e) {
@@ -26,24 +18,9 @@ public abstract class Source {
         }
     }
 
-
     public static void wipe() {
         File file = new File("src.info");
         file.delete();
-    }
-
-
-
-
-    public static void commit(ArrayList<String> options) {
-        try (FileWriter fileWriter = new FileWriter("src.info")) {
-            Iterator<String> iterator = options.iterator();
-            while (iterator.hasNext())
-                fileWriter.write(iterator.next() + "\n");
-        }
-        catch (IOException e) {
-            Errors.showIOerror();
-        }
     }
 
     public static ArrayList<String> download() {
@@ -59,13 +36,8 @@ public abstract class Source {
                     return result;
                 result.add(line);
             }
-        } catch (IOException e) {
-            //Errors.showIOerror();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+        } catch (IOException e) {}
+          catch (Exception e) {}
         return result;
     }
-
 }
