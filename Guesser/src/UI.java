@@ -1,3 +1,5 @@
+import processing.OptionProcessor;
+import processing.Source;
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -16,6 +18,13 @@ public class UI {
         frame.setVisible(true);
         submitButton.setEnabled(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
+
+
+
+
+
+
         frame.pack();
     }
 
@@ -92,6 +101,10 @@ public class UI {
             }
         });
 
+
+
+
+
         submitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -104,8 +117,13 @@ public class UI {
                 else {
                     submitButton.setEnabled(true);
                 }
+
             }
         });
+
+
+
+
 
         recordInput.addKeyListener(new KeyAdapter() {
             @Override
